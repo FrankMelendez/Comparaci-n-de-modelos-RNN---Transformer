@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía Detallada: Comparativa de Modelos NMT</title>
+    <style>
+        :root {
+            --color-rnn: #ff6b6b;
+            --color-lstm: #4ecdc4;
+            --color-gru: #45b7d1;
+            --color-transformer: #feca57;
+            --color-bg: #f4f7f6;
+            --color-text: #2c3e50;
+            --color-card-bg: #ffffff;
+            --border-radius: 12px;
+            --shadow: 0 10px 20px rgba(0,0,0,0.08);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            margin: 0;
+            padding: 2rem;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1300px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--color-text);
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+
+        .chart-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+            min-height: 50vh;
+            border-bottom: 4px solid #ddd;
+            padding-bottom: 1rem;
+        }
+
+        .model-card {
+            width: 22%;
+            text-align: center;
+            padding: 1.5rem 1rem;
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+            background-color: var(--color-card-bg);
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.05);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 4px solid transparent;
+        }
+
+        .model-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 -10px 25px rgba(0,0,0,0.1);
+        }
+
+        .model-card.active {
+            border-color: #333;
+            transform: translateY(-5px);
+        }
+        
+        .model-card h3 {
+            margin: 0 0 1.5rem 0;
+            font-size: 1.4rem;
+        }
+
+        .bars {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+            height: 35vh;
+            border-radius: 5px;
+            overflow: hidden;
+            background: #eee;
+        }
+
+        .bar {
+            width: 30%;
+            transition: height 0.6s ease-out;
+            position: relative;
+        }
+
+        .bar-label {
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: white;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        /* Colores y alturas de las barras */
+        #rnn .bar-quality { background-color: var(--color-rnn); }
+        #lstm .bar-quality { background-color: var(--color-lstm); }
+        #gru .bar-quality { background-color: var(--color-gru); }
+        #transformer .bar-quality { background-color: var(--color-transformer); }
+
+        #rnn .bar-time { background-color: #d9534f; }
+        #lstm .bar-time { background-color: #5bc0de; }
+        #gru .bar-time { background-color: #5cb85c; }
+        #transformer .bar-time { background-color: #f0ad4e; }
+
+        #rnn .bar-params { background-color: #777; }
+        #lstm .bar-params { background-color: #777; }
+        #gru .bar-params { background-color: #777; }
+        #transformer .bar-params { background-color: #777; }
+
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+        }
+        .legend-color {
+            width: 15px;
+            height: 15px;
+            margin-right: 5px;
+            border-radius: 3px;
+        }
+
+        .details-panel {
+            margin-top: 2rem;
+            background-color: var(--color-card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            border-top: 10px solid #333;
+            transition: all 0.4s ease;
+        }
+        
+        .details-panel h2 {
+            margin-top: 0;
+            font-size: 2rem;
+        }
+        
+        .details-panel h4 {
+            font-size: 1.1rem;
+            color: var(--color-text);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-top: 1.5rem;
+        }
+
+        .details-panel-placeholder {
+            color: #888;
+            font-style: italic;
+            text-align: center;
+            padding: 3rem;
+            font-size: 1.2rem;
+        }
+        
+        .details-panel ul {
+            list-style-type: '✓ ';
+            padding-left: 20px;
+        }
+        
+        .details-panel li {
+            margin-bottom: 8px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Infografía Detallada: Comparativa de Modelos NMT</h1>
+
+        <div class="chart-container">
+            <div class="model-card" id="rnn" data-model="rnn">
+                <h3>RNN Simple</h3>
+                <div class="bars">
+                    <div class="bar bar-quality" style="height: 62%;" title="Calidad (Precisión): 62%">
+                        <span class="bar-label">CALIDAD</span>
+                    </div>
+                    <div class="bar bar-time" style="height: 100%;" title="Tiempo (Horas): 12h">
+                        <span class="bar-label">TIEMPO</span>
+                    </div>
+                    <div class="bar bar-params" style="height: 25%;" title="Parámetros (Millones): ~1.5M">
+                        <span class="bar-label">PARÁM.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="model-card" id="lstm" data-model="lstm">
+                <h3>LSTM + Atención</h3>
+                <div class="bars">
+                    <div class="bar bar-quality" style="height: 75%;" title="Calidad (BLEU): 26.3">
+                         <span class="bar-label">CALIDAD</span>
+                    </div>
+                    <div class="bar bar-time" style="height: 50%;" title="Tiempo (Horas): 6h">
+                         <span class="bar-label">TIEMPO</span>
+                    </div>
+                    <div class="bar bar-params" style="height: 35%;" title="Parámetros (Millones): 2.1M">
+                         <span class="bar-label">PARÁM.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="model-card" id="gru" data-model="gru">
+                <h3>GRU + Atención</h3>
+                <div class="bars">
+                    <div class="bar bar-quality" style="height: 74%;" title="Calidad (BLEU): 25.8">
+                         <span class="bar-label">CALIDAD</span>
+                    </div>
+                    <div class="bar bar-time" style="height: 37.5%;" title="Tiempo (Horas): 4.5h">
+                         <span class="bar-label">TIEMPO</span>
+                    </div>
+                    <div class="bar bar-params" style="height: 30%;" title="Parámetros (Millones): 1.8M">
+                         <span class="bar-label">PARÁM.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="model-card" id="transformer" data-model="transformer">
+                <h3>Transformer</h3>
+                <div class="bars">
+                    <div class="bar bar-quality" style="height: 89%;" title="Calidad (Precisión): 89%">
+                         <span class="bar-label">CALIDAD</span>
+                    </div>
+                    <div class="bar bar-time" style="height: 66%;" title="Tiempo (Horas): 8h">
+                         <span class="bar-label">TIEMPO</span>
+                    </div>
+                    <div class="bar bar-params" style="height: 80%;" title="Parámetros (Millones): Alto (~6.5M+)">
+                         <span class="bar-label">PARÁM.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(to right, var(--color-rnn), var(--color-transformer));"></div>
+                Calidad (BLEU/Precisión)
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(to right, #d9534f, #f0ad4e);"></div>
+                Tiempo de Entrenamiento (Horas)
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #777;"></div>
+                Cantidad de Parámetros (Millones)
+            </div>
+        </div>
+
+        <div class="details-panel" id="details-panel">
+            <div class="details-panel-placeholder">
+                <p>Haz clic en una de las columnas del modelo para ver su análisis detallado.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Base de datos de información para el panel de detalles
+        // (Datos ampliados basados en las salidas de los scripts)
+        const modelData = {
+            'rnn': {
+                title: 'Modelo 1: RNN Simple (Sin Atención)',
+                color: 'var(--color-rnn)',
+                metrics: `
+                    <h4>Métricas Clave (Simuladas)</h4>
+                    <ul>
+                        <li><strong>Arquitectura:</strong> SimpleRNN Seq2Seq (1 capa)</li>
+                        <li><strong>Atención:</strong> <strong>No</strong></li>
+                        <li><strong>Calidad:</strong> Baja (Precisión ~62%)</li>
+                        <li><strong>Pérdida (Loss):</strong> Alta (~0.45)</li>
+                        <li><strong>Tiempo:</strong> Muy Alto (12h)</li>
+                        <li><strong>Parámetros:</strong> Bajo (Hidden size: 128)</li>
+                    </ul>`,
+                analysis: `
+                    <h4>Análisis de Arquitectura</h4>
+                    <p>Este modelo es el más básico. Al usar una RNN simple y, lo más importante, <strong>no tener un mecanismo de atención</strong>, sufre del "cuello de botella de información". Todo el significado de la oración de entrada debe comprimirse en un único vector de contexto (el <strong>último estado oculto del encoder</strong>), que luego es la única información que recibe el decodificador.</p>
+                    <p>Esto falla en frases largas, ya que el modelo "olvida" las primeras palabras. Sus scripts mostraron las pérdidas más altas y la precisión más baja.</p>`,
+                conclusion: '<strong>Conclusión:</strong> <strong>Obsoleto para NMT.</strong> Su incapacidad para manejar dependencias largas y la falta de atención lo hacen el modelo con peor rendimiento. Es una base de referencia para demostrar la importancia de la atención.'
+            },
+            'lstm': {
+                title: 'Modelo 2: LSTM + Atención',
+                color: 'var(--color-lstm)',
+                metrics: `
+                    <h4>Métricas Clave (Simuladas)</h4>
+                    <ul>
+                        <li><strong>Arquitectura:</strong> LSTM Seq2Seq (2 capas, bidireccional)</li>
+                        <li><strong>Atención:</strong> <strong>Sí (Bahdanau, Aditiva)</strong></li>
+                        <li><strong>Calidad:</strong> Buena (BLEU 26.3)</li>
+                        <li><strong>Pérdida (Loss):</strong> Media (~0.89 validación)</li>
+                        <li><strong>Tiempo:</strong> Alto (6h)</li>
+                        <li><strong>Parámetros:</strong> Medio (2.1M)</li>
+                    </ul>`,
+                analysis: `
+                    <h4>Análisis de Arquitectura</h4>
+                    <p>Una mejora drástica. El uso de <strong>LSTM</strong> (con sus 4 puertas: Input, Forget, Output, Cell) resuelve el problema del gradiente evanescente (vanishing gradient). La adición de un <strong>mecanismo de atención (Bahdanau)</strong> es la clave: permite al decodificador "mirar" todos los estados ocultos del encoder en cada paso de generación, creando un vector de contexto dinámico y eliminando el cuello de botella.</p>
+                    <p>Sus gráficos de "Activación de Puertas" y "Persistencia de Gradientes" muestran por qué es superior a la RNN simple.</p>`,
+                conclusion: '<strong>Conclusión:</strong> <strong>Robusto y fiable.</strong> Fue el estándar de NMT durante años. Su rendimiento es bueno, pero es computacionalmente costoso y más complejo que GRU debido a su mayor número de puertas y parámetros.'
+            },
+            'gru': {
+                title: 'Modelo 3: GRU + Atención',
+                color: 'var(--color-gru)',
+                metrics: `
+                    <h4>Métricas Clave (Simuladas)</h4>
+                    <ul>
+                        <li><strong>Arquitectura:</strong> GRU Seq2Seq (2 capas, bidireccional)</li>
+                        <li><strong>Atención:</strong> <strong>Sí (Aditiva)</strong></li>
+                        <li><strong>Calidad:</strong> Buena (BLEU 25.8)</li>
+                        <li><strong>Pérdida (Loss):</strong> Baja (~0.62 entrenamiento)</li>
+                        <li><strong>Tiempo:</strong> <strong>Excelente (4.5h)</strong></li>
+                        <li><strong>Parámetros:</strong> <strong>El más bajo (1.8M)</strong></li>
+                    </ul>`,
+                analysis: `
+                    <h4>Análisis de Arquitectura</h4>
+                    <p>GRU es la optimización de LSTM. Combina las puertas "Forget" e "Input" en una sola <strong>"Update Gate"</strong> y tiene solo 2 puertas en total (vs. 4 de LSTM). Como mostraron sus scripts, esto resulta en:</p>
+                    <ul>
+                        <li><strong>~25% menos parámetros</strong> (1.8M vs 2.1M)</li>
+                        <li><strong>~25-35% más rápido</strong> en entrenamiento (4.5h vs 6h)</li>
+                        <li>Menor consumo de memoria.</li>
+                    </ul>
+                    <p>Todo esto lo consigue manteniendo una calidad de traducción casi idéntica a la de LSTM (25.8 vs 26.3 BLEU).</p>`,
+                conclusion: '<strong>Conclusión:</strong> <strong>El mejor balance eficiencia/calidad.</strong> Ofrece un rendimiento casi idéntico al de LSTM pero es significativamente más rápido y ligero. Es la opción ideal para producción o cuando los recursos son limitados.'
+            },
+            'transformer': {
+                title: 'Modelo 4: Transformer',
+                color: 'var(--color-transformer)',
+                metrics: `
+                    <h4>Métricas Clave (Simuladas)</h4>
+                    <ul>
+                        <li><strong>Arquitectura:</strong> Transformer (6 capas Encoder/Decoder)</li>
+                        <li><strong>Atención:</strong> <strong>Multi-Head (8 cabezas)</strong></li>
+                        <li><strong>Calidad:</strong> <strong>La mejor (Precisión ~89%)</strong></li>
+                        <li><strong>Pérdida (Loss):</strong> <strong>La más baja (~0.18)</strong></li>
+                        <li><strong>Tiempo:</strong> Moderado (8h)</li>
+                        <li><strong>Parámetros:</strong> Alto (Hidden size: 512)</li>
+                    </ul>`,
+                analysis: `
+                    <h4>Análisis de Arquitectura</h4>
+                    <p>Abandona la recurrencia (RNN/LSTM/GRU) por completo y se basa al 100% en mecanismos de atención. Sus componentes clave son:</p>
+                    <ul>
+                        <li><strong>Auto-Atención (Self-Attention):</strong> Permite que cada palabra en la oración de entrada mire a todas las demás palabras de la *misma* oración (en el Encoder).</li>
+                        <li><strong>Atención Cruzada (Cross-Attention):</strong> El mecanismo estándar donde el Decodificador mira al Encoder.</li>
+                        <li><strong>Multi-Head Attention:</strong> Realiza la atención 8 veces en paralelo (8 "cabezas"), permitiendo al modelo capturar diferentes tipos de relaciones entre palabras.</li>
+                        <li><strong>Paralelización:</strong> Al no ser recurrente, puede procesar todas las palabras de una vez, haciéndolo (en GPU) mucho más rápido de entrenar a gran escala.</li>
+                    </ul>`,
+                conclusion: '<strong>Conclusión:</strong> <strong>El ganador en calidad y el estándar actual.</strong> Su arquitectura no recurrente y el poderoso mecanismo de Multi-Head Attention le permiten capturar dependencias muy largas y relaciones contextuales complejas, logrando el mejor rendimiento.'
+            }
+        };
+
+        // Lógica para el panel interactivo
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.model-card');
+            const panel = document.getElementById('details-panel');
+
+            // Mostrar el primer modelo por defecto
+            updatePanel('rnn');
+            document.getElementById('rnn').classList.add('active');
+
+            // Función para actualizar el panel
+            function updatePanel(modelKey) {
+                const data = modelData[modelKey];
+                panel.style.borderTopColor = data.color;
+                panel.innerHTML = `
+                    <h2>${data.title}</h2>
+                    ${data.metrics}
+                    ${data.analysis}
+                    <p><strong>${data.conclusion}</strong></p>
+                `;
+            }
+
+            // Event listeners para las tarjetas
+            cards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const modelKey = card.dataset.model;
+                    
+                    // Resaltar la tarjeta activa
+                    cards.forEach(c => c.classList.remove('active'));
+                    card.classList.add('active');
+
+                    // Actualizar el panel
+                    updatePanel(modelKey);
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
