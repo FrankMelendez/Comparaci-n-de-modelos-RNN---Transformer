@@ -90,6 +90,19 @@
             position: relative;
         }
 
+        /* --- NUEVO: Estilo para el valor de la barra --- */
+        .bar-value {
+            position: absolute;
+            top: 5px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-weight: bold;
+            color: #333; /* Color oscuro para legibilidad */
+            font-size: 0.95rem;
+            text-shadow: 1px 1px 1px #ffffff;
+        }
+
         .bar-label {
             position: absolute;
             bottom: 5px;
@@ -188,12 +201,15 @@
                 <h3>RNN Simple</h3>
                 <div class="bars">
                     <div class="bar bar-quality" style="height: 62%;" title="Calidad (Precisión): 62%">
+                        <span class="bar-value">62%</span>
                         <span class="bar-label">CALIDAD</span>
                     </div>
                     <div class="bar bar-time" style="height: 100%;" title="Tiempo (Horas): 12h">
+                        <span class="bar-value">12h</span>
                         <span class="bar-label">TIEMPO</span>
                     </div>
                     <div class="bar bar-params" style="height: 25%;" title="Parámetros (Millones): ~1.5M">
+                        <span class="bar-value">~1.5M</span>
                         <span class="bar-label">PARÁM.</span>
                     </div>
                 </div>
@@ -203,12 +219,15 @@
                 <h3>LSTM + Atención</h3>
                 <div class="bars">
                     <div class="bar bar-quality" style="height: 75%;" title="Calidad (BLEU): 26.3">
+                         <span class="bar-value">26.3</span>
                          <span class="bar-label">CALIDAD</span>
                     </div>
                     <div class="bar bar-time" style="height: 50%;" title="Tiempo (Horas): 6h">
+                         <span class="bar-value">6h</span>
                          <span class="bar-label">TIEMPO</span>
                     </div>
                     <div class="bar bar-params" style="height: 35%;" title="Parámetros (Millones): 2.1M">
+                         <span class="bar-value">2.1M</span>
                          <span class="bar-label">PARÁM.</span>
                     </div>
                 </div>
@@ -218,12 +237,15 @@
                 <h3>GRU + Atención</h3>
                 <div class="bars">
                     <div class="bar bar-quality" style="height: 74%;" title="Calidad (BLEU): 25.8">
+                         <span class="bar-value">25.8</span>
                          <span class="bar-label">CALIDAD</span>
                     </div>
                     <div class="bar bar-time" style="height: 37.5%;" title="Tiempo (Horas): 4.5h">
+                         <span class="bar-value">4.5h</span>
                          <span class="bar-label">TIEMPO</span>
                     </div>
                     <div class="bar bar-params" style="height: 30%;" title="Parámetros (Millones): 1.8M">
+                         <span class="bar-value">1.8M</span>
                          <span class="bar-label">PARÁM.</span>
                     </div>
                 </div>
@@ -233,12 +255,15 @@
                 <h3>Transformer</h3>
                 <div class="bars">
                     <div class="bar bar-quality" style="height: 89%;" title="Calidad (Precisión): 89%">
+                         <span class="bar-value">89%</span>
                          <span class="bar-label">CALIDAD</span>
                     </div>
                     <div class="bar bar-time" style="height: 66%;" title="Tiempo (Horas): 8h">
+                         <span class="bar-value">8h</span>
                          <span class="bar-label">TIEMPO</span>
                     </div>
                     <div class="bar bar-params" style="height: 80%;" title="Parámetros (Millones): Alto (~6.5M+)">
+                         <span class="bar-value">~6.5M+</span>
                          <span class="bar-label">PARÁM.</span>
                     </div>
                 </div>
@@ -261,16 +286,12 @@
         </div>
 
         <div class="details-panel" id="details-panel">
-            <div class="details-panel-placeholder">
-                <p>Haz clic en una de las columnas del modelo para ver su análisis detallado.</p>
             </div>
-        </div>
 
     </div>
 
     <script>
         // Base de datos de información para el panel de detalles
-        // (Datos ampliados basados en las salidas de los scripts)
         const modelData = {
             'rnn': {
                 title: 'Modelo 1: RNN Simple (Sin Atención)',
@@ -365,10 +386,6 @@
             const cards = document.querySelectorAll('.model-card');
             const panel = document.getElementById('details-panel');
 
-            // Mostrar el primer modelo por defecto
-            updatePanel('rnn');
-            document.getElementById('rnn').classList.add('active');
-
             // Función para actualizar el panel
             function updatePanel(modelKey) {
                 const data = modelData[modelKey];
@@ -377,9 +394,13 @@
                     <h2>${data.title}</h2>
                     ${data.metrics}
                     ${data.analysis}
-                    <p><strong>${data.conclusion}</strong></p>
+                    <p>${data.conclusion}</p>
                 `;
             }
+
+            // Mostrar el primer modelo por defecto
+            updatePanel('rnn');
+            document.getElementById('rnn').classList.add('active');
 
             // Event listeners para las tarjetas
             cards.forEach(card => {
