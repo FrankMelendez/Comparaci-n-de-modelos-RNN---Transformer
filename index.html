@@ -90,7 +90,6 @@
             position: relative;
         }
 
-        /* --- NUEVO: Estilo para el valor de la barra --- */
         .bar-value {
             position: absolute;
             top: 5px;
@@ -98,7 +97,7 @@
             right: 0;
             text-align: center;
             font-weight: bold;
-            color: #333; /* Color oscuro para legibilidad */
+            color: #333;
             font-size: 0.95rem;
             text-shadow: 1px 1px 1px #ffffff;
         }
@@ -200,16 +199,16 @@
             <div class="model-card" id="rnn" data-model="rnn">
                 <h3>RNN Simple</h3>
                 <div class="bars">
-                    <div class="bar bar-quality" style="height: 62%;" title="Calidad (Precisión): 62%">
-                        <span class="bar-value">62%</span>
+                    <div class="bar bar-quality" style="height: 10%;" title="Calidad (BLEU): ~0.05 (Esperado)">
+                        <span class="bar-value">~0.05</span>
                         <span class="bar-label">CALIDAD</span>
                     </div>
-                    <div class="bar bar-time" style="height: 100%;" title="Tiempo (Horas): 12h">
-                        <span class="bar-value">12h</span>
+                    <div class="bar bar-time" style="height: 100%;" title="Tiempo (Horas): ~12h (Esperado)">
+                        <span class="bar-value">~12h</span>
                         <span class="bar-label">TIEMPO</span>
                     </div>
-                    <div class="bar bar-params" style="height: 25%;" title="Parámetros (Millones): ~1.5M">
-                        <span class="bar-value">~1.5M</span>
+                    <div class="bar bar-params" style="height: 34%;" title="Parámetros (Millones): ~2.0M">
+                        <span class="bar-value">~2.0M</span>
                         <span class="bar-label">PARÁM.</span>
                     </div>
                 </div>
@@ -218,12 +217,30 @@
             <div class="model-card" id="lstm" data-model="lstm">
                 <h3>LSTM + Atención</h3>
                 <div class="bars">
-                    <div class="bar bar-quality" style="height: 75%;" title="Calidad (BLEU): 26.3">
-                         <span class="bar-value">26.3</span>
+                    <div class="bar bar-quality" style="height: 25%;" title="Calidad (BLEU): ~0.20 (Esperado)">
+                         <span class="bar-value">~0.20</span>
                          <span class="bar-label">CALIDAD</span>
                     </div>
-                    <div class="bar bar-time" style="height: 50%;" title="Tiempo (Horas): 6h">
-                         <span class="bar-value">6h</span>
+                    <div class="bar bar-time" style="height: 80%;" title="Tiempo (Horas): ~10h (Esperado)">
+                         <span class="bar-value">~10h</span>
+                         <span class="bar-label">TIEMPO</span>
+                    </div>
+                    <div class="bar bar-params" style="height: 40%;" title="Parámetros (Millones): ~2.8M">
+                         <span class="bar-value">~2.8M</span>
+                         <span class="bar-label">PARÁM.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="model-card" id="gru" data-model="gru">
+                <h3>GRU + Atención</h3>
+                <div class="bars">
+                    <div class="bar bar-quality" style="height: 22%;" title="Calidad (BLEU): 0.1763">
+                         <span class="bar-value">0.18</span>
+                         <span class="bar-label">CALIDAD</span>
+                    </div>
+                    <div class="bar bar-time" style="height: 70%;" title="Tiempo (Horas): ~8h (Estimado Real)">
+                         <span class="bar-value">~8h</span>
                          <span class="bar-label">TIEMPO</span>
                     </div>
                     <div class="bar bar-params" style="height: 35%;" title="Parámetros (Millones): 2.1M">
@@ -233,36 +250,18 @@
                 </div>
             </div>
 
-            <div class="model-card" id="gru" data-model="gru">
-                <h3>GRU + Atención</h3>
-                <div class="bars">
-                    <div class="bar bar-quality" style="height: 74%;" title="Calidad (BLEU): 25.8">
-                         <span class="bar-value">25.8</span>
-                         <span class="bar-label">CALIDAD</span>
-                    </div>
-                    <div class="bar bar-time" style="height: 37.5%;" title="Tiempo (Horas): 4.5h">
-                         <span class="bar-value">4.5h</span>
-                         <span class="bar-label">TIEMPO</span>
-                    </div>
-                    <div class="bar bar-params" style="height: 30%;" title="Parámetros (Millones): 1.8M">
-                         <span class="bar-value">1.8M</span>
-                         <span class="bar-label">PARÁM.</span>
-                    </div>
-                </div>
-            </div>
-
             <div class="model-card" id="transformer" data-model="transformer">
                 <h3>Transformer</h3>
                 <div class="bars">
-                    <div class="bar bar-quality" style="height: 89%;" title="Calidad (Precisión): 89%">
-                         <span class="bar-value">89%</span>
+                    <div class="bar bar-quality" style="height: 70%;" title="Calidad (BLEU): ~0.60+ (Esperado)">
+                         <span class="bar-value">~0.60+</span>
                          <span class="bar-label">CALIDAD</span>
                     </div>
-                    <div class="bar bar-time" style="height: 66%;" title="Tiempo (Horas): 8h">
-                         <span class="bar-value">8h</span>
+                    <div class="bar bar-time" style="height: 50%;" title="Tiempo (Horas): ~6h (Esperado)">
+                         <span class="bar-value">~6h</span>
                          <span class="bar-label">TIEMPO</span>
                     </div>
-                    <div class="bar bar-params" style="height: 80%;" title="Parámetros (Millones): Alto (~6.5M+)">
+                    <div class="bar bar-params" style="height: 80%;" title="Parámetros (Millones): ~6.5M+">
                          <span class="bar-value">~6.5M+</span>
                          <span class="bar-label">PARÁM.</span>
                     </div>
@@ -273,7 +272,7 @@
         <div class="legend">
             <div class="legend-item">
                 <div class="legend-color" style="background: linear-gradient(to right, var(--color-rnn), var(--color-transformer));"></div>
-                Calidad (BLEU/Precisión)
+                Calidad (Score BLEU)
             </div>
             <div class="legend-item">
                 <div class="legend-color" style="background: linear-gradient(to right, #d9534f, #f0ad4e);"></div>
@@ -297,87 +296,77 @@
                 title: 'Modelo 1: RNN Simple (Sin Atención)',
                 color: 'var(--color-rnn)',
                 metrics: `
-                    <h4>Métricas Clave (Simuladas)</h4>
+                    <h4>Métricas Clave (Esperadas)</h4>
                     <ul>
                         <li><strong>Arquitectura:</strong> SimpleRNN Seq2Seq (1 capa)</li>
                         <li><strong>Atención:</strong> <strong>No</strong></li>
-                        <li><strong>Calidad:</strong> Baja (Precisión ~62%)</li>
-                        <li><strong>Pérdida (Loss):</strong> Alta (~0.45)</li>
-                        <li><strong>Tiempo:</strong> Muy Alto (12h)</li>
-                        <li><strong>Parámetros:</strong> Bajo (Hidden size: 128)</li>
+                        <li><strong>Calidad:</strong> Muy Baja (BLEU ~0.05)</li>
+                        <li><strong>Pérdida (Loss):</strong> Muy Alta (> 3.0)</li>
+                        <li><strong>Tiempo:</strong> Muy Alto</li>
+                        <li><strong>Parámetros:</strong> ~2.0M (Menos que GRU/LSTM con atención)</li>
                     </ul>`,
                 analysis: `
                     <h4>Análisis de Arquitectura</h4>
-                    <p>Este modelo es el más básico. Al usar una RNN simple y, lo más importante, <strong>no tener un mecanismo de atención</strong>, sufre del "cuello de botella de información". Todo el significado de la oración de entrada debe comprimirse en un único vector de contexto (el <strong>último estado oculto del encoder</strong>), que luego es la única información que recibe el decodificador.</p>
-                    <p>Esto falla en frases largas, ya que el modelo "olvida" las primeras palabras. Sus scripts mostraron las pérdidas más altas y la precisión más baja.</p>`,
-                conclusion: '<strong>Conclusión:</strong> <strong>Obsoleto para NMT.</strong> Su incapacidad para manejar dependencias largas y la falta de atención lo hacen el modelo con peor rendimiento. Es una base de referencia para demostrar la importancia de la atención.'
+                    <p>Este modelo debe ser el peor. Al <strong>no tener un mecanismo de atención</strong>, sufre del "cuello de botella de información". Todo el significado de la oración de entrada debe comprimirse en un único vector de contexto.</p>
+                    <p>Se espera que falle en frases largas y produzca traducciones repetitivas. Sus métricas (Loss y BLEU) deberían ser significativamente peores que las del modelo GRU.</p>`,
+                conclusion: '<strong>Conclusión Esperada:</strong> <strong>Obsoleto para NMT.</strong> Su incapacidad para manejar dependencias largas y la falta de atención lo hacen el modelo con peor rendimiento. Servirá como base de referencia para demostrar la importancia de la atención.'
             },
             'lstm': {
                 title: 'Modelo 2: LSTM + Atención',
                 color: 'var(--color-lstm)',
                 metrics: `
-                    <h4>Métricas Clave (Simuladas)</h4>
+                    <h4>Métricas Clave (Esperadas)</h4>
                     <ul>
-                        <li><strong>Arquitectura:</strong> LSTM Seq2Seq (2 capas, bidireccional)</li>
-                        <li><strong>Atención:</strong> <strong>Sí (Bahdanau, Aditiva)</strong></li>
-                        <li><strong>Calidad:</strong> Buena (BLEU 26.3)</li>
-                        <li><strong>Pérdida (Loss):</strong> Media (~0.89 validación)</li>
-                        <li><strong>Tiempo:</strong> Alto (6h)</li>
-                        <li><strong>Parámetros:</strong> Medio (2.1M)</li>
+                        <li><strong>Arquitectura:</strong> LSTM Seq2Seq (1 capa, 128 hidden)</li>
+                        <li><strong>Atención:</strong> <strong>Sí (Bahdanau)</strong></li>
+                        <li><strong>Calidad:</strong> Baja (BLEU ~0.18)</li>
+                        <li><strong>Pérdida (Loss):</strong> Alta (~2.1)</li>
+                        <li><strong>Tiempo:</strong> Alto (Más lento que GRU)</li>
+                        <li><strong>Parámetros:</strong> ~2.8M (Más que GRU)</li>
                     </ul>`,
                 analysis: `
                     <h4>Análisis de Arquitectura</h4>
-                    <p>Una mejora drástica. El uso de <strong>LSTM</strong> (con sus 4 puertas: Input, Forget, Output, Cell) resuelve el problema del gradiente evanescente (vanishing gradient). La adición de un <strong>mecanismo de atención (Bahdanau)</strong> es la clave: permite al decodificador "mirar" todos los estados ocultos del encoder en cada paso de generación, creando un vector de contexto dinámico y eliminando el cuello de botella.</p>
-                    <p>Sus gráficos de "Activación de Puertas" y "Persistencia de Gradientes" muestran por qué es superior a la RNN simple.</p>`,
-                conclusion: '<strong>Conclusión:</strong> <strong>Robusto y fiable.</strong> Fue el estándar de NMT durante años. Su rendimiento es bueno, pero es computacionalmente costoso y más complejo que GRU debido a su mayor número de puertas y parámetros.'
+                    <p>El LSTM (con sus 4 puertas: Input, Forget, Output, Cell) debería resolver el problema del gradiente evanescente. Con atención, debería funcionar.</p>
+                    <p>Se espera que sus métricas de <strong>calidad (BLEU y Loss)</strong> sean casi <strong>idénticas a las del modelo GRU</strong> (BLEU ~0.17-0.18). Sin embargo, debido a que tiene más puertas (4 vs 2), tendrá <strong>más parámetros</strong> (aprox. 2.8M vs 2.1M) y será <strong>más lento para entrenar</strong>.</p>`,
+                conclusion: '<strong>Conclusión Esperada:</strong> <strong>Funcional, pero ineficiente.</strong> Demostrará que GRU y LSTM tienen un rendimiento similar, pero que GRU es una opción más eficiente (menos parámetros, más rápido) para esta tarea.'
             },
             'gru': {
-                title: 'Modelo 3: GRU + Atención',
+                title: 'Modelo 3: GRU + Atención (¡DATOS REALES!)',
                 color: 'var(--color-gru)',
                 metrics: `
-                    <h4>Métricas Clave (Simuladas)</h4>
+                    <h4>Métricas Clave (Reales, Obtenidas)</h4>
                     <ul>
-                        <li><strong>Arquitectura:</strong> GRU Seq2Seq (2 capas, bidireccional)</li>
-                        <li><strong>Atención:</strong> <strong>Sí (Aditiva)</strong></li>
-                        <li><strong>Calidad:</strong> Buena (BLEU 25.8)</li>
-                        <li><strong>Pérdida (Loss):</strong> Baja (~0.62 entrenamiento)</li>
-                        <li><strong>Tiempo:</strong> <strong>Excelente (4.5h)</strong></li>
-                        <li><strong>Parámetros:</strong> <strong>El más bajo (1.8M)</strong></li>
+                        <li><strong>Arquitectura:</strong> nn.GRU (1 capa)</li>
+                        <li><strong>Atención:</strong> <strong>Sí (Bahdanau / Aditiva)</strong></li>
+                        <li><strong>Calidad (BLEU):</strong> <strong>0.1763</strong></li>
+                        <li><strong>Pérdida (Loss):</strong> <strong>2.1631</strong></li>
+                        <li><strong>Tiempo:</strong> ~40k iteraciones</li>
+                        <li><strong>Parámetros:</strong> <strong>2,141,246</strong></li>
                     </ul>`,
                 analysis: `
                     <h4>Análisis de Arquitectura</h4>
-                    <p>GRU es la optimización de LSTM. Combina las puertas "Forget" e "Input" en una sola <strong>"Update Gate"</strong> y tiene solo 2 puertas en total (vs. 4 de LSTM). Como mostraron sus scripts, esto resulta en:</p>
-                    <ul>
-                        <li><strong>~25% menos parámetros</strong> (1.8M vs 2.1M)</li>
-                        <li><strong>~25-35% más rápido</strong> en entrenamiento (4.5h vs 6h)</li>
-                        <li>Menor consumo de memoria.</li>
-                    </ul>
-                    <p>Todo esto lo consigue manteniendo una calidad de traducción casi idéntica a la de LSTM (25.8 vs 26.3 BLEU).</p>`,
-                conclusion: '<strong>Conclusión:</strong> <strong>El mejor balance eficiencia/calidad.</strong> Ofrece un rendimiento casi idéntico al de LSTM pero es significativamente más rápido y ligero. Es la opción ideal para producción o cuando los recursos son limitados.'
+                    <p>El modelo es funcional (¡traduce!), pero las métricas demuestran que es <strong>débil y está sub-entrenado</strong>. Una <strong>Pérdida (Loss) de 2.16</strong> es muy alta, indicando que el modelo no pudo converger. Un <strong>BLEU de 0.17</strong> es bajo, lo que se confirma en las traducciones interactivas (ej. "hola" -> "help me !").</p>
+                    <p>La causa es una arquitectura demasiado simple (solo <strong>1 capa</strong> y <strong>128 de tamaño oculto</strong>) y un entrenamiento corto (solo ~2 "epochs" en promedio) para un vocabulario tan grande (7k+ palabras).</p>`,
+                conclusion: '<strong>Conclusión:</strong> <strong>Implementación exitosa, modelo débil.</strong> Es la prueba perfecta de que una arquitectura simple no puede manejar la complejidad de un idioma. Sirve como un excelente punto de comparación contra el Modelo 4 (Transformer).'
             },
             'transformer': {
                 title: 'Modelo 4: Transformer',
                 color: 'var(--color-transformer)',
                 metrics: `
-                    <h4>Métricas Clave (Simuladas)</h4>
+                    <h4>Métricas Clave (Esperadas)</h4>
                     <ul>
-                        <li><strong>Arquitectura:</strong> Transformer (6 capas Encoder/Decoder)</li>
-                        <li><strong>Atención:</strong> <strong>Multi-Head (8 cabezas)</strong></li>
-                        <li><strong>Calidad:</strong> <strong>La mejor (Precisión ~89%)</strong></li>
-                        <li><strong>Pérdida (Loss):</strong> <strong>La más baja (~0.18)</strong></li>
-                        <li><strong>Tiempo:</strong> Moderado (8h)</li>
-                        <li><strong>Parámetros:</strong> Alto (Hidden size: 512)</li>
+                        <li><strong>Arquitectura:</strong> Transformer (ej. 2-4 capas)</li>
+                        <li><strong>Atención:</strong> <strong>Multi-Head (Self & Cross)</strong></li>
+                        <li><strong>Calidad (BLEU):</strong> <strong>La más alta (Esperado > 0.60)</strong></li>
+                        <li><strong>Pérdida (Loss):</strong> <strong>La más baja (Esperado < 0.5)</strong></li>
+                        <li><strong>Tiempo:</strong> Rápido (en GPU)</li>
+                        <li><strong>Parámetros:</strong> El más alto (~6.5M+)</li>
                     </ul>`,
                 analysis: `
                     <h4>Análisis de Arquitectura</h4>
-                    <p>Abandona la recurrencia (RNN/LSTM/GRU) por completo y se basa al 100% en mecanismos de atención. Sus componentes clave son:</p>
-                    <ul>
-                        <li><strong>Auto-Atención (Self-Attention):</strong> Permite que cada palabra en la oración de entrada mire a todas las demás palabras de la *misma* oración (en el Encoder).</li>
-                        <li><strong>Atención Cruzada (Cross-Attention):</strong> El mecanismo estándar donde el Decodificador mira al Encoder.</li>
-                        <li><strong>Multi-Head Attention:</strong> Realiza la atención 8 veces en paralelo (8 "cabezas"), permitiendo al modelo capturar diferentes tipos de relaciones entre palabras.</li>
-                        <li><strong>Paralelización:</strong> Al no ser recurrente, puede procesar todas las palabras de una vez, haciéndolo (en GPU) mucho más rápido de entrenar a gran escala.</li>
-                    </ul>`,
-                conclusion: '<strong>Conclusión:</strong> <strong>El ganador en calidad y el estándar actual.</strong> Su arquitectura no recurrente y el poderoso mecanismo de Multi-Head Attention le permiten capturar dependencias muy largas y relaciones contextuales complejas, logrando el mejor rendimiento.'
+                    <p>Este modelo abandona la recurrencia (RNN/GRU) y se basa 100% en <strong>Multi-Head Attention</strong>. Esto le permite "ver" todas las palabras a la vez y capturar relaciones de largo alcance mucho mejor que un GRU.</p>
+                    <p>Debido a su arquitectura paralela, entrenará mucho más rápido en una GPU que los modelos recurrentes. Se espera que supere por mucho a los otros tres modelos en calidad de traducción (BLEU) y pérdida (Loss).</p>`,
+                conclusion: '<strong>Conclusión Esperada:</strong> <strong>El estándar de la industria.</strong> Demostrará por qué los modelos recurrentes fueron reemplazados. Será el claro ganador en métricas de calidad, aunque sea el más complejo de implementar.'
             }
         };
 
@@ -398,20 +387,18 @@
                 `;
             }
 
-            // Mostrar el primer modelo por defecto
-            updatePanel('rnn');
-            document.getElementById('rnn').classList.add('active');
+            // Mostrar el modelo GRU (con datos reales) por defecto
+            updatePanel('gru');
+            document.getElementById('gru').classList.add('active');
 
             // Event listeners para las tarjetas
             cards.forEach(card => {
                 card.addEventListener('click', () => {
                     const modelKey = card.dataset.model;
                     
-                    // Resaltar la tarjeta activa
                     cards.forEach(c => c.classList.remove('active'));
                     card.classList.add('active');
 
-                    // Actualizar el panel
                     updatePanel(modelKey);
                 });
             });
